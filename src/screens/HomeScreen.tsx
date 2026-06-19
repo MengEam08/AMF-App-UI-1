@@ -438,25 +438,6 @@ const shippingData = [
   },
 ];
 
-const serviceData = [
-  {
-    image: require("../../assets/announcement.jpg"),
-    title: "News",
-    desc: "Latest updates",
-  },
-
-  {
-    image: require("../../assets/message.jpg"),
-    title: "Contact",
-    desc: "Customer support",
-  },
-
-  {
-    image: require("../../assets/warehouse.jpg"),
-    title: "Location",
-    desc: "Find branches",
-  },
-];
 
 /* RESPONSIVE STYLES */
 const createStyles = (width: number, height: number) => {

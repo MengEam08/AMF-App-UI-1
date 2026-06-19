@@ -276,7 +276,7 @@ export default function ProfileScreen({
               }
             >
               <Image
-                source={require("../../assets/Warehouse.png")}
+                source={require("../../assets/icon_ware.png")}
                 style={{ width: 30, height: 30, marginRight: 10 }}
               />
               <Text style={styles.smallCardText}>Warehouse</Text>
