@@ -3,12 +3,12 @@ import {
   View,
   Image,
   StyleSheet,
-  useWindowDimensions,
   StatusBar,
   TouchableOpacity,
   Text,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useAppDimensions } from "../hooks/useAppDimensions";
 
 const splashImages = [
   require("../../assets/splash screen 1(New).png"),
@@ -19,7 +19,7 @@ const splashImages = [
 ];
 
 export default function SplashScreen({ navigation }: any) {
-  const { width, height } = useWindowDimensions();
+  const { width, height } = useAppDimensions();
   const [currentImage, setCurrentImage] = useState(0);
 
   // Auto slide

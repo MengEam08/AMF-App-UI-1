@@ -27,8 +27,8 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <SafeAreaProvider>
-      <AppShell>
+    <AppShell>
+      <SafeAreaProvider>
       <NavigationContainer documentTitle={{ enabled: false }}>
         <Stack.Navigator
           id="root"
@@ -129,7 +129,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-      </AppShell>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </AppShell>
   );
 }

@@ -2,7 +2,9 @@
 
 An Expo SDK 54 app with Android, iOS, and browser targets. The browser version is prepared for Vercel so portfolio visitors can open a normal HTTPS link without installing Expo Go.
 
-This is a UI demo with sample accounts, shipments, tracking events, and addresses. Login is simulated, and address changes are not saved to a backend. Do not enter real passwords or personal information. The browser version includes a **Try demo account** button.
+This is a UI demo with sample accounts, shipments, tracking events, and addresses. Login is simulated, and address changes are not saved to a backend. Do not enter real passwords or personal information. Use sample values in the existing login form to explore the signed-in screens.
+
+The web preview preserves the original app UI. On screens at least 600px wide, the app is centered at 390px wide and up to 844px tall. Smaller screens use their full width and height. Responsive calculations use the app's displayed size so desktop visitors see the phone layout.
 
 ## Run locally
 
@@ -38,7 +40,7 @@ See [Expo's Vercel guide](https://docs.expo.dev/guides/publishing-websites/#verc
 - Open **Shipment** to filter sample shipments by status.
 - Open **Tracking** and try `BN260513000001` or barcode `549848948948484`.
 - Open **Warehouse** to search branches and select map pins.
-- Open **Account → Login → Try demo account** to view the signed-in screens.
+- Open **Account → Login**, enter a sample phone/email and any sample password, and press **Login** to view the signed-in screens.
 - From the signed-in account, open **My Address → Add New Address** to try map pin selection. **GPS** asks for browser location permission only when pressed. You can select a pin if permission is denied or location is unavailable.
 
 Browser maps use Leaflet and OpenStreetMap tiles. Tiles and GPS require an internet connection; GPS also requires HTTPS or localhost. Native Android/iOS builds continue to use `react-native-maps`.

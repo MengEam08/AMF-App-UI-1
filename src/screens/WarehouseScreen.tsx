@@ -8,13 +8,13 @@ import {
   TouchableOpacity,
   ScrollView,
   Linking,
-  useWindowDimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import MapView, { Marker } from "../components/MapView";
+import { useAppDimensions } from "../hooks/useAppDimensions";
 
 export default function WarehouseScreen({ route }: any) {
-  const { width } = useWindowDimensions();
+  const { width } = useAppDimensions();
   const CARD_WIDTH = Math.min(width - 40, 480);
 
   const [activeTab, setActiveTab] = useState("branches");

@@ -1,23 +1,18 @@
 import React, { type PropsWithChildren } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { useAppDimensions } from "../hooks/useAppDimensions";
 import "./web.css";
 
 export default function AppShell({ children }: PropsWithChildren) {
+  const { width, height } = useAppDimensions();
   return (
     <View style={styles.shell}>
-      <View style={styles.banner}>
-        <Text style={styles.brand}>AMF EXPRESS</Text>
-        <Text style={styles.description}>Portfolio demo · Sample data · No real shipments or accounts</Text>
-      </View>
-      <View style={styles.app}>{children}</View>
+      <View testID="phone-preview" style={[styles.app, { width, height }]}>{children}</View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  shell: { flex: 1, backgroundColor: "#f5f5f5" },
-  banner: { backgroundColor: "#001f4d", paddingHorizontal: 16, paddingVertical: 10, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 6, flexWrap: "wrap" },
-  brand: { color: "#fff", fontSize: 12, fontWeight: "800", letterSpacing: 1 },
-  description: { color: "#d5e3fa", fontSize: 11 },
-  app: { flex: 1, minHeight: 0 },
+  shell: { flex: 1, backgroundColor: "#ededed", alignItems: "center", justifyContent: "center" },
+  app: { flexShrink: 0, minHeight: 0, overflow: "hidden", backgroundColor: "#f5f5f5" },
 });

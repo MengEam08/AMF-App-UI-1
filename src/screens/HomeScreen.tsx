@@ -8,11 +8,11 @@ import {
   TouchableOpacity,
   StatusBar,
   Image,
-  useWindowDimensions,
 } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useAppDimensions } from "../hooks/useAppDimensions";
 
 import LanguageButton from "../components/LanguageButton";
 
@@ -24,7 +24,7 @@ export default function HomeScreen() {
   const scrollRef = useRef<ScrollView>(null);
   const indexRef = useRef(0);
 
-  const { width, height } = useWindowDimensions();
+  const { width, height } = useAppDimensions();
 
   const isTablet = width >= 768;
 

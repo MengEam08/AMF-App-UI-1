@@ -6,11 +6,11 @@ import {
   View,
   Text,
   StyleSheet,
-  useWindowDimensions,
   Platform,
 } from "react-native";
 
 import React, { useEffect, useRef } from "react";
+import { useAppDimensions } from "../hooks/useAppDimensions";
 
 import HomeScreen from "../screens/HomeScreen";
 import PackagesScreen from "../screens/PackagesScreen";
@@ -25,7 +25,7 @@ function TabItem({ focused, iconName, label }: any) {
   const scale = useRef(new Animated.Value(1)).current;
   const translateY = useRef(new Animated.Value(0)).current;
 
-  const { width, height } = useWindowDimensions();
+  const { width, height } = useAppDimensions();
 
   const isSmallDevice = width < 350;
   const isTablet = width >= 768;
@@ -108,7 +108,7 @@ function TabItem({ focused, iconName, label }: any) {
 }
 
 export default function BottomTabs({ isLoggedIn, setIsLoggedIn }: any) {
-  const { width, height } = useWindowDimensions();
+  const { width, height } = useAppDimensions();
 
   const isSmallDevice = width < 350;
   const isTablet = width >= 768;

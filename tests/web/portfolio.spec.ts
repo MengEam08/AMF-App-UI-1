@@ -4,10 +4,16 @@ test('visitors can explore shipments, tracking, maps, and the demo account', asy
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.stack ?? error.message));
   await page.goto('/');
-  await expect(page).toHaveTitle('AMF Express | Portfolio Demo');
+  await expect(page).toHaveTitle('AMF Express');
+  const viewport = page.viewportSize()!;
+  const canvas = page.getByTestId('phone-preview');
+  const bounds = (await canvas.boundingBox())!;
+  expect(bounds.width).toBe(viewport.width >= 600 ? 390 : viewport.width);
+  expect(bounds.height).toBe(viewport.width >= 600 ? Math.min(844, viewport.height - 48) : viewport.height);
+  expect(bounds.x).toBe((viewport.width - bounds.width) / 2);
   await page.getByText('Skip', { exact: true }).click();
   await expect(page.getByRole('tab', { name: /Home/ })).toBeVisible();
-  await expect(page.getByText(/Portfolio demo/)).toBeVisible();
+  await expect(page.getByText(/Portfolio demo|Try demo account|Try sample:/)).toHaveCount(0);
 
   await page.getByRole('tab', { name: /Shipment/ }).click();
   await expect(page.getByText('BN260508000004', { exact: true })).toBeVisible();
@@ -26,8 +32,10 @@ test('visitors can explore shipments, tracking, maps, and the demo account', asy
   await expect(page.getByPlaceholder('Search by Branch')).toHaveValue('Depo');
 
   await page.getByRole('tab', { name: /Account/ }).click();
-  await page.getByText('Login', { exact: true }).click();
-  await page.getByRole('button', { name: 'Try demo account' }).click();
+  await page.getByText('Login', { exact: true }).filter({ visible: true }).click();
+  await page.getByPlaceholder('Phone Number or Email').fill('demo@example.com');
+  await page.getByPlaceholder('Password', { exact: true }).fill('sample-password');
+  await page.getByText('Login', { exact: true }).filter({ visible: true }).click();
   await page.getByRole('tab', { name: /Account/ }).click();
   await expect(page.getByText('STANDARD', { exact: true })).toBeVisible();
   await page.getByText('My Address', { exact: true }).click();

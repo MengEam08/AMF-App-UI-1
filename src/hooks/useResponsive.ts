@@ -1,7 +1,7 @@
-import { useWindowDimensions } from "react-native";
+import { useAppDimensions } from "./useAppDimensions";
 
 export function useResponsive() {
-  const { width } = useWindowDimensions();
+  const { width } = useAppDimensions();
 
   const isSmallPhone = width < 360;
   const isPhone = width < 768;

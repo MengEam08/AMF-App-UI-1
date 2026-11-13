@@ -84,18 +84,6 @@ export default function LoginScreen({ navigation, setIsLoggedIn }: any) {
             <Text style={styles.title}>Welcome Back</Text>
 
             <Text style={styles.subtitle}>Login to continue</Text>
-            {Platform.OS === "web" && (
-              <TouchableOpacity
-                accessibilityRole="button"
-                style={{ marginTop: 16, padding: 14, borderRadius: 10, backgroundColor: "#e8f0ff" }}
-                onPress={() => {
-                  setIsLoggedIn(true);
-                  navigation.reset({ index: 0, routes: [{ name: "Main" }] });
-                }}
-              >
-                <Text style={{ color: "#034090", fontWeight: "700" }}>Try demo account</Text>
-              </TouchableOpacity>
-            )}
           </View>
 
           {/* FORM */}

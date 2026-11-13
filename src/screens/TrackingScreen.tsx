@@ -241,15 +241,6 @@ export default function TrackScreen() {
               <Text style={styles.emptyText}>
                 Enter tracking number to search
               </Text>
-              {Platform.OS === "web" && (
-                <TouchableOpacity
-                  accessibilityRole="button"
-                  onPress={() => setTrackingNumber("BN260513000001")}
-                  style={{ padding: 12, marginTop: 8 }}
-                >
-                  <Text style={{ color: "#034090", fontWeight: "700" }}>Try sample: BN260513000001</Text>
-                </TouchableOpacity>
-              )}
             </View>
           ) : foundTracking ? (
             <TrackingResult tracking={foundTracking} />
