@@ -4,11 +4,11 @@
     "slug": "my-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/favicon.png",
+    "icon": "./assets/APP-icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/favicon.png",
+      "image": "./assets/APP-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,7 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/APP-icon.png",
         "backgroundColor": "#ffffff"
       },
       "config": {
@@ -33,12 +33,18 @@
       "package": "com.meng.AmfUI"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "bundler": "metro",
+      "output": "single",
+      "name": "AMF Express | Portfolio Demo",
+      "favicon": "./assets/APP-icon.png"
     },
     "extra": {
       "eas": {
         "projectId": "dac2ca32-84e1-487e-a79a-1e42a3296184"
       }
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

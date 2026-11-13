@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import AppShell from "./src/components/AppShell";
 
 import LoginScreen from "./src/screens/LoginScreen";
 import SignupScreen from "./src/screens/SignupScreen";
@@ -27,8 +28,10 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
+      <AppShell>
+      <NavigationContainer documentTitle={{ enabled: false }}>
         <Stack.Navigator
+          id="root"
           initialRouteName="Splash"
           screenOptions={{
             headerShown: false,
@@ -126,6 +129,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </AppShell>
     </SafeAreaProvider>
   );
 }

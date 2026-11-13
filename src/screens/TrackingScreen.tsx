@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  Platform,
 } from "react-native";
 
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -165,11 +166,10 @@ export default function TrackScreen() {
   const [trackingNumber, setTrackingNumber] = React.useState("");
   const cleanInput = trackingNumber.trim().toLowerCase();
 
+  const matches = (value: string) => value.toLowerCase() === cleanInput;
   const foundTracking =
-  trackingList.find((item) => item.barcode.toLowerCase() === cleanInput) ||
-  trackingList.find((item) =>
-    item.barcode.toLowerCase().includes(cleanInput),
-  );
+    trackingList.find(item => matches(item.packageId) || matches(item.barcode)) ||
+    trackingList.find(item => [item.packageId, item.barcode].some(value => value.toLowerCase().includes(cleanInput)));
 
   return (
     <SafeAreaView style={styles.container}>
@@ -241,6 +241,15 @@ export default function TrackScreen() {
               <Text style={styles.emptyText}>
                 Enter tracking number to search
               </Text>
+              {Platform.OS === "web" && (
+                <TouchableOpacity
+                  accessibilityRole="button"
+                  onPress={() => setTrackingNumber("BN260513000001")}
+                  style={{ padding: 12, marginTop: 8 }}
+                >
+                  <Text style={{ color: "#034090", fontWeight: "700" }}>Try sample: BN260513000001</Text>
+                </TouchableOpacity>
+              )}
             </View>
           ) : foundTracking ? (
             <TrackingResult tracking={foundTracking} />
@@ -254,7 +263,7 @@ export default function TrackScreen() {
       </ScrollView>
 
       {/* Bottom Nav */}
-      <View style={styles.bottomNav}>
+      <View style={[styles.bottomNav, Platform.OS === "web" && { display: "none" }]}>
         {[
           ["home-outline", "HOME"],
           ["wallet-outline", "WALLET"],

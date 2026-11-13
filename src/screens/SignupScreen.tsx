@@ -6,7 +6,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Alert,
   Image,
   ScrollView,
   KeyboardAvoidingView,
@@ -14,7 +13,6 @@ import {
 } from "react-native";
 
 import AnimatedPress from "../components/AnimatedPress";
-import { LinearGradient } from "expo-linear-gradient";
 
 import {
   Ionicons,
@@ -24,6 +22,7 @@ import {
 
 import LanguageButton from "../components/LanguageButton";
 import BackButton from "../components/BackButton";
+import { showAlert } from "../utils/showAlert";
 
 export default function SignupScreen({ navigation, setIsLoggedIn }: any) {
   const [name, setName] = useState("");
@@ -41,16 +40,16 @@ export default function SignupScreen({ navigation, setIsLoggedIn }: any) {
   // 🔥 FIXED SIGNUP LOGIC
   const handleSignup = () => {
     if (!name || !phone || !password || !confirmPassword) {
-      Alert.alert("Error", "Please fill all fields");
+      showAlert("Error", "Please fill all fields");
       return;
     }
 
     if (password !== confirmPassword) {
-      Alert.alert("Error", "Passwords do not match");
+      showAlert("Error", "Passwords do not match");
       return;
     }
 
-    Alert.alert("Success", "Account created!");
+    showAlert("Success", "Account created!");
 
     // ✅ set login state
     setIsLoggedIn(true);

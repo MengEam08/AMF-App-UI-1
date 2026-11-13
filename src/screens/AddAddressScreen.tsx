@@ -10,13 +10,15 @@ import {
     ScrollView,
     Switch,
     Image,
+    Platform,
 } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker } from "../components/MapView";
 import * as Location from "expo-location";
 import { useEffect } from "react";
 import { StatusBar } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
+import { showAlert } from "../utils/showAlert";
 
 export default function AddAddressScreen({ navigation }: any) {
     const [selectedType, setSelectedType] = useState("Home");
@@ -45,7 +47,7 @@ export default function AddAddressScreen({ navigation }: any) {
             const { status } = await Location.requestForegroundPermissionsAsync();
 
             if (status !== "granted") {
-                alert("Location permission denied");
+                showAlert("Location", "Location permission denied. You can still select a pin on the map.");
                 return;
             }
 
@@ -67,12 +69,12 @@ export default function AddAddressScreen({ navigation }: any) {
                 longitudeDelta: 0.01,
             });
         } catch (error) {
-            console.log(error);
+            showAlert("Location unavailable", "Select your location on the map, or allow location access in your device settings.");
         }
     };
 
     useEffect(() => {
-        getCurrentLocation();
+        if (Platform.OS !== "web") getCurrentLocation();
     }, []);
 
     const addressTypes = [

@@ -48,12 +48,12 @@ export default function LevelPriceScreen() {
                 {
                     label: "Weight",
                     value: "$1.5",
-                    icon: require("../../assets/Box.png"),
+                    icon: require("../../assets/Bage-Tier.png"), 
                 },
                 {
                     label: "Normal (CBM)",
                     value: "$190",
-                    icon: require("../../assets/Bage-Tier.png"),
+                    icon: require("../../assets/Box.png"),
                 },
                 {
                     label: "Sensitive (CBM)",

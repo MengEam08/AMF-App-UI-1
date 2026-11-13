@@ -11,9 +11,9 @@ interface ScreenContentProps {
 
 export const ScreenContent: React.FC<ScreenContentProps> = ({ title, path, children }) => {
   return (
-    <View className={styles.container}>
-      <Text className={styles.title}>{title}</Text>
-      <View className={styles.separator} />
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      <View style={styles.separator} />
       <EditScreenInfo path={path} />
       {children}
     </View>
@@ -21,7 +21,7 @@ export const ScreenContent: React.FC<ScreenContentProps> = ({ title, path, child
 };
 
 const styles = {
-  container: `items-center flex-1 justify-center bg-white`,
-  separator: `h-[1px] my-7 w-4/5 bg-gray-200`,
-  title: `text-xl font-bold`,
+  container: { alignItems: 'center' as const, flex: 1, justifyContent: 'center' as const, backgroundColor: '#ffffff' },
+  separator: { height: 1, marginVertical: 28, width: '80%' as const, backgroundColor: '#e5e7eb' },
+  title: { fontSize: 20, fontWeight: 'bold' as const },
 };

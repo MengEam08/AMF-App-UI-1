@@ -8,15 +8,14 @@ import {
   TouchableOpacity,
   ScrollView,
   Linking,
-  Dimensions,
+  useWindowDimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import MapView, { Marker } from "react-native-maps";
-
-const { width } = Dimensions.get("window");
-const CARD_WIDTH = width - 40;
+import MapView, { Marker } from "../components/MapView";
 
 export default function WarehouseScreen({ route }: any) {
+  const { width } = useWindowDimensions();
+  const CARD_WIDTH = Math.min(width - 40, 480);
 
   const [activeTab, setActiveTab] = useState("branches");
   const [warehouseTab, setWarehouseTab] = useState("all");
@@ -309,6 +308,7 @@ export default function WarehouseScreen({ route }: any) {
               {(searchText ? filteredBranches : branches).map((branch) => (
                 <Marker
                   key={branch.id}
+                  title={branch.name}
                   coordinate={{
                     latitude: branch.latitude,
                     longitude: branch.longitude,
@@ -364,7 +364,7 @@ export default function WarehouseScreen({ route }: any) {
               }}
             >
               {(searchText ? filteredBranches : branches).map((branch) => (
-                <View key={branch.id} style={styles.card}>
+                <View key={branch.id} style={[styles.card, { width: CARD_WIDTH }]}>
                   <View style={styles.cardTop}>
                     <View style={styles.iconBox}>
                       <Ionicons name="business" size={22} color="#0e3a8a" />
@@ -627,10 +627,11 @@ const styles = StyleSheet.create({
   cardContainer: {
     position: "absolute",
     bottom: 90,
+    left: 0,
+    right: 0,
   },
 
   card: {
-    width: CARD_WIDTH,
     marginRight: 16,
     backgroundColor: "#fff",
     borderRadius: 18,

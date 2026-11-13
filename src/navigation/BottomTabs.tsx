@@ -115,6 +115,7 @@ export default function BottomTabs({ isLoggedIn, setIsLoggedIn }: any) {
 
   return (
     <Tab.Navigator
+      id="tabs"
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: false,
